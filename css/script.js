@@ -44,7 +44,7 @@ async function carregarJogos() {
     .from("partidas")
     .select(`
         *,
-        times (
+        adversario:times!partidas_adversario_id_fkey (
             nome,
             escudo_url
         )
@@ -130,12 +130,13 @@ async function carregarJogos() {
         timeAdversario.className = "team opponent";
 
         const escudoAdversario = document.createElement("img");
-escudoAdversario.src = jogo.times?.escudo_url || "";
-escudoAdversario.alt = jogo.times?.nome || "Escudo do adversário";
+escudoAdversario.src = jogo.adversario?.escudo_url || "";
+escudoAdversario.alt = jogo.adversario?.nome || "Escudo do adversário";
 
 const nomeAdversario = document.createElement("strong");
-nomeAdversario.textContent = (jogo.times?.nome || "ADVERSÁRIO").toUpperCase();
-
+nomeAdversario.textContent =
+    (jogo.adversario?.nome || "ADVERSÁRIO").toUpperCase();
+        
         timeAdversario.append(escudoAdversario, nomeAdversario);
         principal.append(timeJariva, placar, timeAdversario);
 
