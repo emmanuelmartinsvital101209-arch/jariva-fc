@@ -41,9 +41,15 @@ async function carregarJogos() {
     container.textContent = "Carregando jogos do Jariva...";
 
     const { data, error } = await supabaseClient
-        .from("partidas")
-        .select("*")
-        .order("data_partida", { ascending: false });
+    .from("partidas")
+    .select(`
+        *,
+        times (
+            nome,
+            escudo_url
+        )
+    `)
+    .order("data_partida", { ascending: false });
 
     if (error) {
         console.error("Erro ao buscar partidas:", error);
@@ -124,10 +130,11 @@ async function carregarJogos() {
         timeAdversario.className = "team opponent";
 
         const escudoAdversario = document.createElement("img");
-        escudoAdversario.alt = "Escudo do adversário";
+escudoAdversario.src = jogo.times?.escudo_url || "";
+escudoAdversario.alt = jogo.times?.nome || "Escudo do adversário";
 
-        const nomeAdversario = document.createElement("strong");
-        nomeAdversario.textContent = "ADVERSÁRIO";
+const nomeAdversario = document.createElement("strong");
+nomeAdversario.textContent = (jogo.times?.nome || "ADVERSÁRIO").toUpperCase();
 
         timeAdversario.append(escudoAdversario, nomeAdversario);
         principal.append(timeJariva, placar, timeAdversario);
