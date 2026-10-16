@@ -156,6 +156,7 @@ nomeAdversario.textContent =
 }
 
 
+
 async function carregarArtilharia() {
     const container = document.getElementById("scorersContainer");
     if (!container) return;
@@ -163,33 +164,31 @@ async function carregarArtilharia() {
     container.textContent = "Carregando artilharia...";
 
     try {
-        // Buscar todos os jogadores cadastrados
         const { data: jogadores, error: erroJogadores } =
             await supabaseClient
                 .from("jogadores")
-                .select("id, nome");
+                .select("id, nome, numero_camisa, ativo")
+                .eq("ativo", true);
 
         if (erroJogadores) throw erroJogadores;
 
-        // Buscar os registros de gols
         const { data: gols, error: erroGols } =
             await supabaseClient
                 .from("gols")
-                .select("jogador_id");
+                .select("jogador_id, quantidade");
 
         if (erroGols) throw erroGols;
 
-        // Contar os gols de cada jogador
         const contagem = {};
 
         (gols || []).forEach(gol => {
             if (gol.jogador_id == null) return;
 
             const id = String(gol.jogador_id);
-            contagem[id] = (contagem[id] || 0) + 1;
+            contagem[id] =
+                (contagem[id] || 0) + Number(gol.quantidade || 0);
         });
 
-        // Ordenar do maior número de gols para o menor
         const ranking = (jogadores || [])
             .map(jogador => ({
                 ...jogador,
@@ -202,7 +201,6 @@ async function carregarArtilharia() {
 
         container.replaceChildren();
 
-        // Cabeçalho
         const cabecalho = document.createElement("div");
         cabecalho.className = "scorer-row header-row";
 
@@ -214,7 +212,6 @@ async function carregarArtilharia() {
 
         container.appendChild(cabecalho);
 
-        // Jogadores
         ranking.forEach((jogador, indice) => {
             const linha = document.createElement("div");
             linha.className = "scorer-row";
@@ -227,10 +224,7 @@ async function carregarArtilharia() {
 
             const avatar = document.createElement("span");
             avatar.className = "player-avatar";
-            avatar.textContent = jogador.nome
-                .trim()
-                .charAt(0)
-                .toUpperCase();
+            avatar.textContent = jogador.nome.trim().charAt(0).toUpperCase();
 
             const nome = document.createElement("span");
             nome.textContent = jogador.nome;
@@ -238,7 +232,7 @@ async function carregarArtilharia() {
             nomeArea.append(avatar, nome);
 
             const jogos = document.createElement("span");
-            jogos.textContent = "2";
+            jogos.textContent = "—";
 
             const total = document.createElement("strong");
             total.textContent = jogador.totalGols;
@@ -250,9 +244,10 @@ async function carregarArtilharia() {
     } catch (erro) {
         console.error("Erro ao carregar artilharia:", erro);
         container.textContent =
-            "Não foi possível carregar a artilharia.";
+            "Erro ao carregar a artilharia. Confira a conexão com o banco.";
     }
 }
+
 
 
 carregarJogos();
