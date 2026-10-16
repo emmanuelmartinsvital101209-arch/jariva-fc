@@ -241,11 +241,13 @@ async function carregarArtilharia() {
             container.appendChild(linha);
         });
 
-    } catch (erro) {
-        console.error("Erro ao carregar artilharia:", erro);
-        container.textContent =
-            "Erro ao carregar a artilharia. Confira a conexão com o banco.";
-    }
+    
+} catch (erro) {
+    console.error("Erro ao carregar artilharia:", erro);
+    container.textContent =
+        "Erro: " + (erro.message || JSON.stringify(erro));
+}
+
 }
 
 
