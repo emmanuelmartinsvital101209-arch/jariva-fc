@@ -155,4 +155,105 @@ nomeAdversario.textContent =
     });
 }
 
+
+async function carregarArtilharia() {
+    const container = document.getElementById("scorersContainer");
+    if (!container) return;
+
+    container.textContent = "Carregando artilharia...";
+
+    try {
+        // Buscar todos os jogadores cadastrados
+        const { data: jogadores, error: erroJogadores } =
+            await supabaseClient
+                .from("jogadores")
+                .select("id, nome");
+
+        if (erroJogadores) throw erroJogadores;
+
+        // Buscar os registros de gols
+        const { data: gols, error: erroGols } =
+            await supabaseClient
+                .from("gols")
+                .select("jogador_id");
+
+        if (erroGols) throw erroGols;
+
+        // Contar os gols de cada jogador
+        const contagem = {};
+
+        (gols || []).forEach(gol => {
+            if (gol.jogador_id == null) return;
+
+            const id = String(gol.jogador_id);
+            contagem[id] = (contagem[id] || 0) + 1;
+        });
+
+        // Ordenar do maior número de gols para o menor
+        const ranking = (jogadores || [])
+            .map(jogador => ({
+                ...jogador,
+                totalGols: contagem[String(jogador.id)] || 0
+            }))
+            .sort((a, b) =>
+                b.totalGols - a.totalGols ||
+                a.nome.localeCompare(b.nome, "pt-BR")
+            );
+
+        container.replaceChildren();
+
+        // Cabeçalho
+        const cabecalho = document.createElement("div");
+        cabecalho.className = "scorer-row header-row";
+
+        ["#", "JOGADOR", "JOGOS", "GOLS"].forEach(texto => {
+            const coluna = document.createElement("span");
+            coluna.textContent = texto;
+            cabecalho.appendChild(coluna);
+        });
+
+        container.appendChild(cabecalho);
+
+        // Jogadores
+        ranking.forEach((jogador, indice) => {
+            const linha = document.createElement("div");
+            linha.className = "scorer-row";
+
+            const posicao = document.createElement("span");
+            posicao.textContent = indice + 1;
+
+            const nomeArea = document.createElement("div");
+            nomeArea.className = "player-mini";
+
+            const avatar = document.createElement("span");
+            avatar.className = "player-avatar";
+            avatar.textContent = jogador.nome
+                .trim()
+                .charAt(0)
+                .toUpperCase();
+
+            const nome = document.createElement("span");
+            nome.textContent = jogador.nome;
+
+            nomeArea.append(avatar, nome);
+
+            const jogos = document.createElement("span");
+            jogos.textContent = "2";
+
+            const total = document.createElement("strong");
+            total.textContent = jogador.totalGols;
+
+            linha.append(posicao, nomeArea, jogos, total);
+            container.appendChild(linha);
+        });
+
+    } catch (erro) {
+        console.error("Erro ao carregar artilharia:", erro);
+        container.textContent =
+            "Não foi possível carregar a artilharia.";
+    }
+}
+
+
 carregarJogos();
+carregarArtilharia();
