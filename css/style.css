@@ -2350,3 +2350,424 @@ footer {
     }
 
 }
+
+
+/* ========================================
+   JARIVA FC — AJUSTES RESPONSIVOS MOBILE
+   ======================================== */
+
+html {
+    width: 100%;
+    overflow-x: clip;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+    overflow-x: clip;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Tablet e celular */
+@media (max-width: 900px) {
+    .header {
+        height: 72px;
+        padding: 0 16px;
+        gap: 10px;
+        position: sticky;
+    }
+
+    .header-content {
+        gap: 10px;
+    }
+
+    .brand {
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .brand img {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+    }
+
+    .brand strong {
+        font-size: 19px;
+    }
+
+    .brand span {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .header > .nav {
+        display: none;
+    }
+
+    .header > .nav.mobile-open {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 20px 16px;
+        gap: 22px;
+        flex-direction: column;
+        align-items: center;
+        background: #050706;
+        border-bottom: 1px solid var(--border);
+        z-index: 1001;
+    }
+
+    .header > .nav a {
+        font-size: 13px;
+    }
+
+    .header > .instagram-button {
+        margin-left: auto;
+        padding: 9px 10px;
+        font-size: 9px;
+        white-space: nowrap;
+    }
+
+    .menu-button {
+        display: block;
+        flex-shrink: 0;
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 60px 20px 45px;
+        gap: 10px;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: clamp(48px, 12vw, 82px);
+        line-height: .95;
+        overflow-wrap: anywhere;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .hero-crest {
+        width: min(75vw, 300px);
+        height: min(75vw, 300px);
+        max-width: 100%;
+        margin-top: 25px;
+    }
+
+    .hero-crest img {
+        width: 70%;
+    }
+
+    .crest-ring {
+        width: 90%;
+        height: 90%;
+    }
+
+    .founded {
+        right: 0;
+        bottom: 8px;
+    }
+
+    .match-section,
+    .scorers-section,
+    .sponsors-section,
+    .stats-section,
+    .result-section,
+    .squad-section {
+        padding: 55px 18px;
+    }
+
+    .section-heading {
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+        font-size: clamp(30px, 7vw, 45px);
+        overflow-wrap: anywhere;
+    }
+
+    .match-card {
+        padding: 18px 12px 25px;
+    }
+
+    .match-teams {
+        grid-template-columns: minmax(0, 1fr) 55px minmax(0, 1fr);
+        gap: 4px;
+    }
+
+    .match-team img,
+    .opponent-logo {
+        width: clamp(45px, 15vw, 75px);
+        height: clamp(45px, 15vw, 75px);
+    }
+
+    .match-team span {
+        font-size: clamp(10px, 3vw, 15px);
+        overflow-wrap: anywhere;
+    }
+
+    .match-team small,
+    .match-center small {
+        font-size: 7px;
+        letter-spacing: .5px;
+    }
+
+    .versus {
+        font-size: 30px;
+    }
+
+    .result-main {
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        gap: 5px;
+    }
+
+    .result-score {
+        padding: 0 5px;
+        gap: 5px;
+    }
+
+    .result-score strong {
+        font-size: clamp(35px, 9vw, 55px);
+    }
+
+    .result-club img,
+    .result-club .large {
+        width: clamp(45px, 13vw, 70px);
+        height: clamp(45px, 13vw, 70px);
+    }
+
+    .result-club span {
+        font-size: clamp(9px, 2.8vw, 13px);
+        overflow-wrap: anywhere;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 25px;
+    }
+
+    .stat-box {
+        min-width: 0;
+        min-height: 120px;
+        padding: 20px 12px;
+    }
+
+    .stat-number {
+        font-size: clamp(35px, 9vw, 50px);
+    }
+
+    .stat-label {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .scorer-row {
+        grid-template-columns: 32px minmax(0, 1fr) 45px;
+        gap: 5px;
+        min-width: 0;
+        font-size: 11px;
+    }
+
+    .scorer-row > span:nth-child(3) {
+        display: none;
+    }
+
+    .scorer-row > strong:last-child {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .player-mini {
+        min-width: 0;
+        gap: 8px;
+    }
+
+    .player-mini span {
+        overflow-wrap: anywhere;
+    }
+
+    .player-avatar {
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+    }
+
+    .header-row {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .sponsors-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .sponsor-card {
+        min-width: 0;
+    }
+
+    .cta-section {
+        padding: 55px 20px;
+    }
+
+    .cta-content h2 {
+        font-size: clamp(48px, 12vw, 75px);
+    }
+
+    .cta-crest {
+        max-width: 55%;
+        right: -50px;
+    }
+
+    footer {
+        padding: 35px 20px 20px;
+    }
+
+    .footer-main,
+    .footer-bottom {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .footer-links {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+}
+
+/* Celulares estreitos */
+@media (max-width: 380px) {
+    .header {
+        padding: 0 10px;
+        gap: 5px;
+    }
+
+    .brand img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .brand strong {
+        font-size: 16px;
+    }
+
+    .header > .instagram-button {
+        padding: 8px;
+        font-size: 8px;
+    }
+
+    .menu-button {
+        font-size: 22px;
+    }
+
+    .match-teams {
+        grid-template-columns: minmax(0, 1fr) 42px minmax(0, 1fr);
+    }
+
+    .versus {
+        font-size: 25px;
+    }
+
+    .sponsors-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Página de jogos */
+@media (max-width: 800px) {
+    .games-hero {
+        padding: 85px 18px 45px;
+    }
+
+    .games-hero h1 {
+        font-size: clamp(40px, 11vw, 65px);
+        overflow-wrap: anywhere;
+    }
+
+    .games-stats {
+        padding: 18px 12px;
+    }
+
+    .games-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .games-stat {
+        min-width: 0;
+        padding: 18px 8px;
+    }
+
+    .games-stat strong {
+        font-size: 27px;
+    }
+
+    .games-stat span {
+        font-size: 8px;
+        letter-spacing: .5px;
+    }
+
+    .games-list-section {
+        padding: 45px 12px;
+    }
+
+    .game-card {
+        padding: 14px;
+        min-width: 0;
+    }
+
+    .game-main {
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        gap: 5px;
+    }
+
+    .team {
+        min-width: 0;
+        gap: 6px;
+    }
+
+    .team img,
+    .team-placeholder {
+        width: 45px;
+        height: 45px;
+    }
+
+    .team strong {
+        font-size: 10px;
+        overflow-wrap: anywhere;
+    }
+
+    .score {
+        gap: 4px;
+    }
+
+    .score strong {
+        font-size: clamp(25px, 7vw, 38px);
+    }
+
+    .score span {
+        font-size: 14px;
+    }
+
+    .game-footer {
+        gap: 8px;
+        flex-wrap: wrap;
+        font-size: 9px;
+    }
+}
