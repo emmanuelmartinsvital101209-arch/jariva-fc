@@ -2772,34 +2772,124 @@ img {
     }
 }
 
-@media (max-width: 600px) {
-    .navbar {
-        flex-wrap: wrap;
+
+/* CORREÇÃO DEFINITIVA DO CABEÇALHO MOBILE */
+@media (max-width: 900px) {
+    .header {
+        height: 72px;
+        min-height: 72px;
+        display: flex;
+        flex-wrap: nowrap;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
+        gap: 10px;
+        padding: 0 16px;
     }
 
-    .logo {
-        flex-shrink: 0;
-        white-space: nowrap;
-    }
-
-    .logo h1,
-    .logo span {
-        white-space: nowrap;
-    }
-
-    .nav {
-        width: 100%;
+    .header > .brand {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px 18px;
+        align-items: center;
+        flex: 0 0 auto;
+        min-width: 0;
+        gap: 8px;
     }
 
-    .nav a {
-        font-size: 12px;
+    .header > .brand img {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+    }
+
+    .header > .brand div {
+        min-width: 0;
+    }
+
+    .header > .brand strong {
+        display: block;
         white-space: nowrap;
+        font-size: 19px;
+        line-height: 1.1;
+    }
+
+    .header > .brand span {
+        display: block;
+        white-space: nowrap;
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .header > .nav {
+        display: none;
+    }
+
+    .header > .nav.mobile-open {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        padding: 24px 16px;
+        background: #050706;
+        border-bottom: 1px solid var(--border);
+        z-index: 1001;
+    }
+
+    .header > .nav a {
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .header > .instagram-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 1 auto;
+        margin-left: auto;
+        padding: 9px 10px;
+        font-size: 9px;
+        white-space: nowrap;
+    }
+
+    .header > .menu-button {
+        display: block;
+        flex: 0 0 auto;
+        padding: 5px;
+        font-size: 24px;
+        line-height: 1;
+        cursor: pointer;
     }
 }
+
+@media (max-width: 380px) {
+    .header {
+        padding: 0 10px;
+        gap: 6px;
+    }
+
+    .header > .brand img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .header > .brand strong {
+        font-size: 16px;
+    }
+
+    .header > .brand span {
+        font-size: 6px;
+        letter-spacing: .7px;
+    }
+
+    .header > .instagram-button {
+        padding: 8px;
+        font-size: 8px;
+    }
+
+    .header > .menu-button {
+        font-size: 22px;
+    }
+}
+
