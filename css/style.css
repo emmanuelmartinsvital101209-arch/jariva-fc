@@ -2893,3 +2893,74 @@ img {
     }
 }
 
+
+/* CABEÇALHO DA PÁGINA DE JOGOS NO CELULAR */
+@media (max-width: 900px) {
+    .header .header-content {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .header .brand {
+        flex-shrink: 0;
+        gap: 8px;
+    }
+
+    .header .brand img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .header .brand strong {
+        font-size: 19px;
+        white-space: nowrap;
+    }
+
+    .header .brand span {
+        font-size: 7px;
+        letter-spacing: 1px;
+        white-space: nowrap;
+    }
+
+    .header .nav {
+        display: none;
+    }
+
+    .header .nav.mobile-open {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        padding: 24px 16px;
+        background: #050706;
+        border-bottom: 1px solid var(--border);
+        z-index: 1001;
+    }
+
+    .header .nav a {
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .header .instagram-button {
+        margin-left: auto;
+        padding: 9px 10px;
+        font-size: 9px;
+        white-space: nowrap;
+    }
+
+    .header .menu-button {
+        display: block;
+        flex-shrink: 0;
+        background: transparent;
+        border: 0;
+        color: white;
+        font-size: 24px;
+        padding: 5px;
+        cursor: pointer;
+    }
+}
