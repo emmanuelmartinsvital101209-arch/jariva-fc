@@ -2771,3 +2771,35 @@ img {
         font-size: 9px;
     }
 }
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .logo {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .logo h1,
+    .logo span {
+        white-space: nowrap;
+    }
+
+    .nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 18px;
+    }
+
+    .nav a {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+}
